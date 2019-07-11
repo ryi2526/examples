@@ -10,17 +10,19 @@ const Peer = window.Peer;
   const remoteId = document.getElementById('js-remote-id');
 
   const localStream = await navigator.mediaDevices
+
+    // Render local stream
+    localVideo.muted = true;
+    localVideo.srcObject = localStream;
+    localVideo.playsInline = true;
+    await localVideo.play().catch(console.error);
+
     .getUserMedia({
       audio: true,
       video: true,
     })
     .catch(console.error);
 
-  // Render local stream
-  localVideo.muted = true;
-  localVideo.srcObject = localStream;
-  localVideo.playsInline = true;
-  await localVideo.play().catch(console.error);
 
   const peer = new Peer({
     key: window.__SKYWAY_KEY__,
