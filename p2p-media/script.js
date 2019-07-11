@@ -9,15 +9,15 @@ const Peer = window.Peer;
   const remoteVideo = document.getElementById('js-remote-stream');
   const remoteId = document.getElementById('js-remote-id');
 
-  const localStream = await navigator.mediaDevices
-    .getUserMedia({
-      audio: true,
-      video: true,
-    })
-    .catch(console.error);
+//  const localStream = await navigator.mediaDevices
+//    .getUserMedia({
+//      audio: true,
+//      video: true,
+//    })
+//    .catch(console.error);
 
   // Render local stream
-  localVideo.mute = true;
+  localVideo.muted = true;
   localVideo.srcObject = localStream;
   localVideo.playsInline = true;
   await localVideo.play().catch(console.error);
