@@ -2,7 +2,7 @@ window.__SKYWAY_KEY__ = 'b1e7600c-ab47-4d54-b497-df1ea1c937f2';
 const Peer = window.Peer;
 
 (async function main() {
-  const localVideo = document.getElementById('js-local-stream');
+//  const localVideo = document.getElementById('js-local-stream');
   const localId = document.getElementById('js-local-id');
   const callTrigger = document.getElementById('js-call-trigger');
   const closeTrigger = document.getElementById('js-close-trigger');
@@ -12,15 +12,15 @@ const Peer = window.Peer;
   const localStream = await navigator.mediaDevices
     .getUserMedia({
       audio: true,
-      video: true,
+//      video: true,
     })
     .catch(console.error);
 
   // Render local stream
-  // localVideo.muted = true;
-  localVideo.srcObject = localStream;
-  localVideo.playsInline = true;
-  await localVideo.play().catch(console.error);
+//  localVideo.muted = true;
+//  localVideo.srcObject = localStream;
+//  localVideo.playsInline = true;
+//  await localVideo.play().catch(console.error);
 
   const peer = new Peer({
     key: window.__SKYWAY_KEY__,
@@ -37,17 +37,17 @@ const Peer = window.Peer;
 
     const mediaConnection = peer.call(remoteId.value, localStream);
 
-    mediaConnection.on('stream', async stream => {
+//    mediaConnection.on('stream', async stream => {
       // Render remote stream for caller
-      remoteVideo.srcObject = stream;
-      remoteVideo.playsInline = true;
-      await remoteVideo.play().catch(console.error);
-    });
+//      remoteVideo.srcObject = stream;
+//      remoteVideo.playsInline = true;
+//      await remoteVideo.play().catch(console.error);
+//    });
 
-    mediaConnection.once('close', () => {
-      remoteVideo.srcObject.getTracks().forEach(track => track.stop());
-      remoteVideo.srcObject = null;
-    });
+//    mediaConnection.once('close', () => {
+//      remoteVideo.srcObject.getTracks().forEach(track => track.stop());
+//      remoteVideo.srcObject = null;
+//    });
 
     closeTrigger.addEventListener('click', () => mediaConnection.close(true));
   });
@@ -58,16 +58,16 @@ const Peer = window.Peer;
   peer.on('call', mediaConnection => {
     mediaConnection.answer(localStream);
 
-    mediaConnection.on('stream', async stream => {
+//    mediaConnection.on('stream', async stream => {
       // Render remote stream for callee
-      remoteVideo.srcObject = stream;
-      remoteVideo.playsInline = true;
-      await remoteVideo.play().catch(console.error);
-    });
+//      remoteVideo.srcObject = stream;
+//      remoteVideo.playsInline = true;
+//      await remoteVideo.play().catch(console.error);
+//    });
 
     mediaConnection.once('close', () => {
-      remoteVideo.srcObject.getTracks().forEach(track => track.stop());
-      remoteVideo.srcObject = null;
+//      remoteVideo.srcObject.getTracks().forEach(track => track.stop());
+//      remoteVideo.srcObject = null;
     });
 
     closeTrigger.addEventListener('click', () => mediaConnection.close(true));
