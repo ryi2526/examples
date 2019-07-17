@@ -1,4 +1,3 @@
-window.__SKYWAY_KEY__ = 'b1e7600c-ab47-4d54-b497-df1ea1c937f2';
 const Peer = window.Peer;
 
 (async function main() {
@@ -11,13 +10,13 @@ const Peer = window.Peer;
 
   const localStream = await navigator.mediaDevices
     .getUserMedia({
-      audio: true,
-      video: true,
+      audio: false,
+      video: false,
     })
     .catch(console.error);
 
   // Render local stream
-  // localVideo.muted = true;
+  localVideo.muted = true;
   localVideo.srcObject = localStream;
   localVideo.playsInline = true;
   await localVideo.play().catch(console.error);
